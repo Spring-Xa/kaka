@@ -12,7 +12,7 @@ $sex = isset($_POST['sex']) ? $_POST['sex'] : "";
 //建立连接
 $conn = mysqli_connect("localhost", "root", "123456", "kaka");
 //准备SQL语句,查询用户名
-$sql_select = "SELECT user_name,user_phone,user_email FROM ka_user WHERE user_name = '$username' or user_email = '$email' or user_phone = '$phone'";
+$sql_select = "SELECT user_name,user_phone,user_email FROM `kaka`.`ka_user` WHERE user_name = '$username' or user_email = '$email' or user_phone = '$phone'";
 //执行SQL语句
 $ret = mysqli_query($conn, $sql_select);
 $row = mysqli_fetch_array($ret);
@@ -58,7 +58,7 @@ if ($username == $row['user_name'] || $phone == $row['user_phone'] || $email == 
                 //执行SQL语句
                 mysqli_query($conn, $sql_insert);
                 //查询刚刚插入的数据
-                $sql_select = "SELECT * FROM ka_user WHERE user_name = '$username'";
+                $sql_select = "SELECT * FROM `kaka`.`ka_user` WHERE user_name = '$username'";
                 $ret = mysqli_query($conn, $sql_select);
                 $row = mysqli_fetch_array($ret);
                 //插入操作日志

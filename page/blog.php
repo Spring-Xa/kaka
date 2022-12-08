@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div><img src="/images/tm-about-img.jpg" style="width: 100%;height: 150px"></div>
+<div><img src="/images/tm-about-img.jpg" style="width: 100%;height: 150px" alt=""></div>
 
 <section class="tm-section">
     <div class="search" style="margin-left: 80px;margin-top: -70px;margin-bottom: 10px;">
@@ -74,7 +74,7 @@
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
                 <?php
                 //                $sql_select_hot = "SELECT * FROM ka_article WHERE article_author = '$user' ORDER BY article_views DESC LIMIT 1;";
-                $sql_select_hot = "SELECT * FROM ka_article ORDER BY article_views DESC LIMIT 1;";
+                $sql_select_hot = "SELECT * FROM `kaka`.`ka_article` ORDER BY article_views DESC LIMIT 1;";
                 $ret = mysqli_query($conn, $sql_select_hot);
                 $row = mysqli_fetch_array($ret);
                 $article_id = $row['article_id'];
@@ -99,7 +99,7 @@ EOT;
                     <?php
                     //准备SQL语句
                     //                    $sql_select = "SELECT * FROM ka_article WHERE article_author = '$user';";
-                    $sql_select = "SELECT * FROM ka_article;";
+                    $sql_select = "SELECT * FROM `kaka`.`ka_article`;";
                     //执行SQL语句
                     $ret = mysqli_query($conn, $sql_select);
                     while ($row = mysqli_fetch_array($ret)) {
@@ -133,7 +133,7 @@ EOT;
                         if (!isset($_SESSION['user'])) {
                             echo "未登录，去=><a href='login.php'>登录！</a>";
                         } else {
-                            $sql = "select * from ka_user where user_name = '$user'";
+                            $sql = "select * from `kaka`.`ka_user` where user_name = '$user'";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_array($result);
                             //输出个人信息

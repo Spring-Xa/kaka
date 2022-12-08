@@ -8,7 +8,7 @@ if (!empty($username) && !empty($password)) {
     //建立连接
     $conn = mysqli_connect('localhost', 'root', '123456', 'kaka');
     //准备SQL语句
-    $sql_select = "SELECT * FROM ka_user WHERE user_name = '$username' AND user_passwd = '$password'";
+    $sql_select = "SELECT * FROM `kaka`.`ka_user` WHERE user_name = '$username' AND user_passwd = '$password'";
     //执行SQL语句
     $ret = mysqli_query($conn, $sql_select);
     $row = mysqli_fetch_array($ret);

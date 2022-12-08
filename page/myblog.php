@@ -72,7 +72,7 @@
             //建立连接
             $conn = mysqli_connect('localhost', 'root', '123456', 'kaka');
             //查询用户身份
-            $sql_select_role = "SELECT * FROM ka_user WHERE user_name = '$user';";
+            $sql_select_role = "SELECT * FROM `kaka`.`ka_user` WHERE user_name = '$user';";
             //执行SQL语句
             $result = mysqli_query($conn, $sql_select_role);
             $row = mysqli_fetch_array($result);
@@ -80,10 +80,10 @@
             $role = $row['user_role'];
             //如果是1，则用户为管理员，2为普通用户
             if ($role == '1') {
-                $sql_select = "SELECT * FROM ka_article;";
+                $sql_select = "SELECT * FROM `kaka`.`ka_article`;";
                 //执行SQL语句
             } else if ($role == '2') {
-                $sql_select = "SELECT * FROM ka_article WHERE article_author = '$username';";
+                $sql_select = "SELECT * FROM `kaka`.`ka_article` WHERE article_author = '$username';";
                 //执行SQL语句
             }
             $result = mysqli_query($conn, $sql_select);
