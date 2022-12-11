@@ -1,0 +1,72 @@
+table.image-table {
+    font-family: verdana, arial, sans-serif;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    color: #333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+
+table.image-table th {
+    background: #b5cfd2;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+}
+
+table.image-table td {
+    background: #dcddc0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+}
+
+.title {
+    background: #b5cfd2;
+    width: 100%;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+    margin-top: 5px;
+}
+
+.System-Login-Log {
+    overflow: auto;
+    max-height: 350px;
+}
+
+table.System-Login-Log-Table {
+    font-family: verdana, arial, sans-serif;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    color: #333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+    overflow: auto;
+}
+
+table.System-Login-Log-Table th {
+    background: #b5cfd2;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+table.System-Login-Log-Table td {
+    background: #dcddc0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+}

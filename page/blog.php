@@ -7,7 +7,6 @@
 
     <title>我的时光机</title>
     <!-- load stylesheets -->
-    <link rel="stylesheet" href="#css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Bootstrap style -->
     <link rel="stylesheet" href="../css/templatemo-style.css">
@@ -32,7 +31,7 @@
     <div class="container-fluid">
         <div class="tm-header-inner">
             <!--点击logo跳转到主页-->
-            <a href="blog.php" class="navbar-brand tm-site-name">卡卡时光机</a>
+            <a href="/page/blog.php" class="navbar-brand tm-site-name">卡卡时光机</a>
             <!-- 标题 -->
             <nav class="navbar tm-main-nav">
                 <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse"
@@ -40,12 +39,11 @@
                 </button>
                 <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                     <ul class="nav navbar-nav">
-
                         <li class="nav-item active">
-                            <a href="blog.php" class="nav-link">首页</a>
+                            <a href="/page/blog.php" class="nav-link">首页</a>
                         </li>
                         <li class="nav-item">
-                            <a href="publish.php" class="nav-link">发布博客</a>
+                            <a href="/page/publish.php" class="nav-link">发布博客</a>
                         </li>
                     </ul>
                 </div>
@@ -58,7 +56,7 @@
 
 <section class="tm-section">
     <div class="search" style="margin-left: 80px;margin-top: -70px;margin-bottom: 10px;">
-        <form method="post" name="search" action="search.php">
+        <form method="post" name="search" action="/page/search.php">
             <table>
                 <tr>
                     <td>
@@ -84,7 +82,7 @@
                 print <<<EOT
                 
                     <div class="tm-blog-post" style="border: #f5f5f5 1px solid;margin-bottom: 20px;padding-bottom: -40px;padding-top: 20px;padding-left: 20px;padding-right: 20px">
-                        <a href='content.php?id=$article_id' style="text-decoration: none;color: black">
+                        <a href='/page/content.php?id=$article_id' style="text-decoration: none;color: black">
                         <h3 class="tm-gold-text">$article_title</h3>
                         <img src="$article_img" alt="Image" class="img-fluid tm-img-post" style="max-height: 400px">
                         </a>
@@ -110,7 +108,7 @@ EOT;
 //                    $article_content = $row['article_content'];
 
                             $article_img = $row['article_img'];
-                            echo "<a href='content.php?id=".$article_id."'> <div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'><div class='tm-content-box'>";
+                            echo "<a href='/page/content.php?id=".$article_id."'> <div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'><div class='tm-content-box'>";
                             echo "<img src='$article_img' alt='Image' class='tm-margin-b-20 img-fluid' style='width: 310px;height: 180px;'>";
                             echo "<h4 class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/
                           text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_title</h4>";
@@ -131,7 +129,7 @@ EOT;
                         <?php
                         //    //判断是否登录
                         if (!isset($_SESSION['user'])) {
-                            echo "未登录，去=><a href='login.php'>登录！</a>";
+                            echo "未登录，去=><a href='/page/login.php'>登录！</a>";
                         } else {
                             $sql = "select * from `kaka`.`ka_user` where user_name = '$user'";
                             $result = mysqli_query($conn, $sql);
@@ -148,7 +146,7 @@ EOT;
                             $data = json_decode($url, true);
                             $login_address = $data['data']['country'] . $data['data']['region'] . $data['data']['city'];
 
-                            echo "<div><a href='myblog.php'><img src='$img_url' alt='Image' style='width:120px;height:120px;'></a></div>";
+                            echo "<div><a href='/page/myblog.php'><img src='$img_url' alt='Image' style='width:120px;height:120px;'></a></div>";
                             echo "<span>欢迎您!&ensp;$user</span>";
 //                            //查询用户身份
 //                            $sql_select_role = "SELECT * FROM ka_user WHERE user_name = '$user';";
@@ -159,7 +157,7 @@ EOT;
 //                            if ($role == '1') {
 //                                echo "<span><a href='admin.php' style='margin-left: 20px;font-size: 8px'>进入后台</a></span>";
 //                            }
-                            echo "<span><a href='logout.php' style='margin-left: 20px;font-size: 8px'>退出登录</a></span>";
+                            echo "<span><a href='/page/logout.php' style='margin-left: 20px;font-size: 8px'>退出登录</a></span>";
                             echo "<hr>";
                             echo "<table style='line-height: 60px;width: 100%;'>
                                      <tr>

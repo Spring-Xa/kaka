@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a href="register.php" style="text-decoration: none;">无账号？点击注册</a>
+                            <a href="/page/register.php" style="text-decoration: none;">无账号？点击注册</a>
                         </td>
                     </tr>
                     <tr>
