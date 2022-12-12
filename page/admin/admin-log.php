@@ -150,8 +150,8 @@ if ($username != "") {
                             echo "<td>" . $row['oper_time'] . "</td>";
                             echo "<td>" . $row['oper_address'] . "</td>";
                             echo "<td>";
-                            echo "<button><a href='/page/admin/ctrl/edit_log.php?id=" . $row['oper_id'] . "'>编辑</a></button>";
-                            echo "&ensp;";
+//                            echo "<button><a href='/page/admin/ctrl/edit_log.php?id=" . $row['oper_id'] . "'>编辑</a></button>";
+//                            echo "&ensp;";
                             echo "<button><a href='/page/admin/ctrl/delete_log.php?id=" . $row['oper_id'] . "'>删除</a></button>";
                             echo "</td></tr>";
                             $row = mysqli_fetch_array($result);

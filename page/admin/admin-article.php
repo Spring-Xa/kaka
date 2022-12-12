@@ -157,7 +157,7 @@ if ($username != "") {
                             echo "<td>" . $row['article_views'] . "</td>";
                             echo "<td>" . $row['article_like'] . "</td>";
                             echo "<td>" . $row['article_comment'] . "</td>";
-                            echo "<td><button><a href='/page/edit.php?id=" . $row['c_id'] . "'>编辑</a></button> <button><a href='/page/delete.php?id=" . $row['c_id'] . "'>删除</a></button></td>";
+                            echo "<td><button><a href='/page/edit.php?id=" . $row['article_id'] . "'>编辑</a></button> <button><a href='/page/delete.php?id=" . $row['article_id'] . "'>删除</a></button></td>";
                             echo "</tr>";
                             $i++;
                         }

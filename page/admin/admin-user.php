@@ -163,7 +163,7 @@ if ($username != "") {
                             echo "<td>" . $row['user_lasttime'] . "</td>";
                             echo "<td>" . $row['user_state'] . "</td>";
                             echo "<td>" . $row['user_role'] . "</td>";
-                            echo "<td><button><a href='ctrl/user_edit.php?id=" . $row['id'] . "'>编辑</a></button> <button><a href='ctrl/user_delete.php?id=" . $row['id'] . "'>删除</a></button></td>";
+                            echo "<td><button><a href='ctrl/user_edit.php?id=" . $row['user_id'] . "'>编辑</a></button> <button><a href='ctrl/user_delete.php?id=" . $row['user_id'] . "'>删除</a></button></td>";
                             echo "</tr>";
                             $i++;
                         }
