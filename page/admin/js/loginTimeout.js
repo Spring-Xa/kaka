@@ -4,6 +4,6 @@ setInterval(function () {
     time++;
     if (time === 1800) {
         alert("登录信息已过期！");
-        window.location.href = "../../login/logout.php";
+        window.location.href = "/page/logout.php";
     }
 }, 1000);
