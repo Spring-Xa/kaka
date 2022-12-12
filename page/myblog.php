@@ -42,7 +42,7 @@
                 </button>
                 <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                     <ul class="nav navbar-nav">
-                        
+
                         <li class="nav-item">
                             <a href="blog.php" class="nav-link">首页</a>
                         </li>
@@ -77,45 +77,39 @@
             $result = mysqli_query($conn, $sql_select_role);
             $row = mysqli_fetch_array($result);
             $username = $row['user_name'];
-            $role = $row['user_role'];
-            //如果是1，则用户为管理员，2为普通用户
-            if ($role == '1') {
-                $sql_select = "SELECT * FROM `kaka`.`ka_article`;";
-                //执行SQL语句
-            } else if ($role == '2') {
-                $sql_select = "SELECT * FROM `kaka`.`ka_article` WHERE article_author = '$username';";
-                //执行SQL语句
-            }
+            $sql_select = "SELECT * FROM `kaka`.`ka_article` WHERE article_author = '$username';";
+            //执行SQL语句
             $result = mysqli_query($conn, $sql_select);
-            //            //执行SQL语句
-//            $result = mysqli_query($conn, $sql_select);
             //循环输出数据
             while ($row = mysqli_fetch_array($result)) {
                 if ($row != "") {
                     $article_id = $row['article_id'];
-                    $article_author = $row['article_author'];
+                    $article_time = $row['article_time'];
                     $article_title = $row['article_title'];
-//                    $article_content = $row['article_content'];
                     $article_img = $row['article_img'];
-//                    if ($role == '1') {
-//                        $sql_select = "SELECT * FROM ka_article WHERE article_id=$ART;";
-//                        //执行SQL语句
-//                    } else if ($role == '2') {
-//                        $sql_select = "SELECT * FROM ka_article WHERE article_author = '$username';";
-//                        //执行SQL语句
-//                    }
-                    echo "<a href='content.php?id=".$article_id."'><div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'><div class='tm-content-box'>";
-                    echo "<img src='$article_img' alt='Image' class='tm-margin-b-20 img-fluid' style='width: 310px;height: 180px;'>";
-                    echo "<table style='width: 100%;text-align: justify-all'><tr><td><p class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/
-                          text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_title</p></td><td><p class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/
-                          text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>作者：$article_author
-                          </p></td></tr></table>";
-//                    echo "<div class='tm-margin-b-20' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/
-//                          text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_content</div>";
-                    echo "<div style='margin-bottom: 10px'>";
-                    echo "<a href='edit.php?id=" . $article_id . "' class='tm-btn text-uppercase' style='margin-left: 20px'>编辑</a>";
-                    echo "<a href='delete.php?id=" . $article_id . "' class='tm-btn text-uppercase' style='margin-left: 50px'>删除</a>";
-                    echo "</div></div></div></a> ";
+                    print <<<eot
+                        <a href='content.php?id=$article_id'>
+                            <div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'>
+                                <div class='tm-content-box'>
+                                    <img src='$article_img' alt='Image' class='tm-margin-b-20 img-fluid' style='width: 310px;height: 180px;'>
+                                    <table style='width: 100%;text-align: justify-all'>
+                                        <tr>
+                                            <td>
+                                                <p class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_title</p>
+                                            </td>
+                                            <td>
+                                                <p class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_time</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div style='margin-bottom: 10px'>
+                                        <a href='edit.php?id=$article_id' class='tm-btn text-uppercase' style='margin-left: 20px'>编辑</a>
+                                        <a href='delete.php?id=$article_id' class='tm-btn text-uppercase' style='margin-left: 50px'>删除</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+eot;
                 } else {
                     echo "<div style='text-align: center'>暂无内容！</div>";
                 }
