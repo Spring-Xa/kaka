@@ -88,10 +88,10 @@
                     </tr>
                     <tr>
                         <td>内容：</td>
-                        <td>
+                        <td style="background-color: white;color: black">
                             <?php echo $content ?>
                         </td>
-                        <td></td>
+                        <td style="background-color: white;color: black"></td>
                     </tr>
                 </table>
         </div>
