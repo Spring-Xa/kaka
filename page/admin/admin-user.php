@@ -69,7 +69,7 @@ if ($username != "") {
                 <li><a href="admin-home.php">首页</a></li>
                 <li><a href="admin-user.php">用户管理</a></li>
                 <li><a href="admin-log.php">日志管理</a></li>
-                <li><a href="admin-comment.php">评论管理</a></li>
+                <li><a href="admin-article.php">博客管理</a></li>
             </ul>
         </div>
     </div>
@@ -114,7 +114,7 @@ if ($username != "") {
                         <td>
                             <div class="add">
                                 <button onclick="add()">
-                                    <a href="ctrl/admin-user-add.php">添加用户</a>
+                                    <a href="ctrl/user_add.php">添加用户</a>
                                 </button>
                             </div>
                         </td>
@@ -163,7 +163,7 @@ if ($username != "") {
                             echo "<td>" . $row['user_lasttime'] . "</td>";
                             echo "<td>" . $row['user_state'] . "</td>";
                             echo "<td>" . $row['user_role'] . "</td>";
-                            echo "<td><button><a href='ctrl/admin-user-edit.php?id=" . $row['id'] . "'>编辑</a></button> <button><a href='ctrl/admin-user-delete.php?id=" . $row['id'] . "'>删除</a></button></td>";
+                            echo "<td><button><a href='ctrl/user_edit.php?id=" . $row['id'] . "'>编辑</a></button> <button><a href='ctrl/user_delete.php?id=" . $row['id'] . "'>删除</a></button></td>";
                             echo "</tr>";
                             $i++;
                         }

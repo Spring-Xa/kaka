@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>卡卡时光机-评论管理</title>
+    <title>卡卡时光机-博客管理</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/common_table.css">
     <script src="js/loginTimeout.js"></script>
@@ -69,7 +69,7 @@ if ($username != "") {
                 <li><a href="admin-home.php">首页</a></li>
                 <li><a href="admin-user.php">用户管理</a></li>
                 <li><a href="admin-log.php">日志管理</a></li>
-                <li><a href="admin-comment.php">评论管理</a></li>
+                <li><a href="admin-article.php">博客管理</a></li>
             </ul>
         </div>
     </div>
@@ -93,7 +93,7 @@ if ($username != "") {
             <div class="right-content-body-header">
                 <table class="title">
                     <tr>
-                        <th colspan="9">评论管理</th>
+                        <th colspan="9">博客管理</th>
                     </tr>
                 </table>
             </div>
@@ -102,7 +102,7 @@ if ($username != "") {
                     <tr>
                         <td>
                             <div class="search">
-                                <form action="admin-user.php" method="post">
+                                <form action="admin-article.php" method="post">
                                     <label>
                                         <input type="text" name="search" placeholder="请输入关键字">
                                     </label>
@@ -113,7 +113,7 @@ if ($username != "") {
                         <td>
                             <div class="add">
                                 <button onclick="add()">
-                                    <a href="ctrl/admin-user-add.php">发布评论</a>
+                                    <a href="/page/publish.php">发布博客</a>
                                 </button>
                             </div>
                         </td>
@@ -124,18 +124,21 @@ if ($username != "") {
                 <table class="user-info-table">
                     <tr>
                         <th>序号</th>
-                        <th>评论ID</th>
-                        <th>评论内容</th>
-                        <th>评论时间</th>
-                        <th>评论人</th>
-                        <th>评论的公告ID</th>
+                        <th>blog-ID</th>
+                        <th>作者</th>
+                        <th>发布时间</th>
+                        <th>状态</th>
+                        <th>类型</th>
+                        <th>浏览量</th>
+                        <th>点赞</th>
+                        <th>评论</th>
                         <th>操作</th>
                     </tr>
                     <?php
                     //连接数据库
-                    $conn = mysqli_connect('localhost', 'root', '123456', 'ai_classroom');
+                    $conn = mysqli_connect('localhost', 'root', '123456', 'kaka');
                     //查询语句
-                    $sql = "select * from comment";
+                    $sql = "select * from `kaka`.ka_article";
                     //执行查询语句
                     $result = mysqli_query($conn, $sql);
                     //判断是否查询成功
@@ -146,12 +149,15 @@ if ($username != "") {
                             //输出查询结果
                             echo "<tr>";
                             echo "<td>" .$i. "</td>";
-                            echo "<td>" . $row['c_id'] . "</td>";
-                            echo "<td>" . $row['c_content'] . "</td>";
-                            echo "<td>" . $row['c_time'] . "</td>";
-                            echo "<td>" . $row['c_author'] . "</td>";
-                            echo "<td>" . $row['c_n_id'] . "</td>";
-                            echo "<td><button><a href='ctrl/admin-comment-edit.php?id=" . $row['c_id'] . "'>编辑</a></button> <button><a href='ctrl/admin-comment-delete.php?id=" . $row['c_id'] . "'>删除</a></button></td>";
+                            echo "<td>" . $row['article_id'] . "</td>";
+                            echo "<td>" . $row['article_author'] . "</td>";
+                            echo "<td>" . $row['article_time'] . "</td>";
+                            echo "<td>" . $row['article_state'] . "</td>";
+                            echo "<td>" . $row['article_type'] . "</td>";
+                            echo "<td>" . $row['article_views'] . "</td>";
+                            echo "<td>" . $row['article_like'] . "</td>";
+                            echo "<td>" . $row['article_comment'] . "</td>";
+                            echo "<td><button><a href='/page/edit.php?id=" . $row['c_id'] . "'>编辑</a></button> <button><a href='/page/delete.php?id=" . $row['c_id'] . "'>删除</a></button></td>";
                             echo "</tr>";
                             $i++;
                         }

@@ -70,7 +70,7 @@ if ($username != "") {
                 <li><a href="admin-home.php">首页</a></li>
                 <li><a href="admin-user.php">用户管理</a></li>
                 <li><a href="admin-log.php">日志管理</a></li>
-                <li><a href="admin-comment.php">评论管理</a></li>
+                <li><a href="admin-article.php">博客管理</a></li>
             </ul>
         </div>
     </div>
