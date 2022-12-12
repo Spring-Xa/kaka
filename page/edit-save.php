@@ -40,8 +40,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
             //生成URL
             $url = "http://127.0.0.1:80/upload/article/" . $_FILES["file"]["name"];
             echo "<script>console.log('文件上传成功');</script>";
-            //插入数据
-            ////更新数据
+            //更新数据
             $conn = mysqli_connect("localhost", "root", "123456", "kaka");
             $sql_update_title = "UPDATE `kaka`.`ka_article` SET article_title = '$title' WHERE article_id = '$id'";
             $result = mysqli_query($conn, $sql_update_title);
@@ -52,6 +51,14 @@ if ((($_FILES["file"]["type"] == "image/gif")
             echo "<script>alert('修改成功！');window.location.href='myblog.php';</script>";
         }
     }
+} else if ($_FILES["file"]["type"] == null) {
+    //更新数据
+    $conn = mysqli_connect("localhost", "root", "123456", "kaka");
+    $sql_update_title = "UPDATE `kaka`.`ka_article` SET article_title = '$title' WHERE article_id = '$id'";
+    $result = mysqli_query($conn, $sql_update_title);
+    $sql_update_content = "UPDATE `kaka`.`ka_article` SET article_content = '$htmlData' WHERE article_id = '$id'";
+    $result = mysqli_query($conn, $sql_update_content);
+    echo "<script>alert('修改成功！');window.location.href='myblog.php';</script>";
 } else {
     echo "<script>alert('非法的文件格式！');history.go(-1);</script>";
 }
