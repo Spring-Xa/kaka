@@ -71,7 +71,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
                 <?php
-                //                $sql_select_hot = "SELECT * FROM ka_article WHERE article_author = '$user' ORDER BY article_views DESC LIMIT 1;";
                 $sql_select_hot = "SELECT * FROM `kaka`.`ka_article` ORDER BY article_views DESC LIMIT 1;";
                 $ret = mysqli_query($conn, $sql_select_hot);
                 $row = mysqli_fetch_array($ret);
@@ -81,7 +80,7 @@
                 $article_content = $row['article_content'];
                 print <<<EOT
                 
-                    <div class="tm-blog-post" style="border: #f5f5f5 1px solid;margin-bottom: 20px;padding-bottom: -40px;padding-top: 20px;padding-left: 20px;padding-right: 20px">
+                    <div class="tm-blog-post" style="color: black;border: #f5f5f5 1px solid;margin-bottom: 20px;padding-bottom: -40px;padding-top: 20px;padding-left: 20px;padding-right: 20px">
                         <a href='/page/content.php?id=$article_id' style="text-decoration: none;color: black">
                         <h3 class="tm-gold-text">$article_title</h3>
                         <img src="$article_img" alt="Image" class="img-fluid tm-img-post" style="max-height: 400px">
@@ -91,30 +90,37 @@
                 
 EOT;
                 ?>
-
-
                 <div class="row">
                     <?php
                     //准备SQL语句
-                    //                    $sql_select = "SELECT * FROM ka_article WHERE article_author = '$user';";
                     $sql_select = "SELECT * FROM `kaka`.`ka_article`;";
                     //执行SQL语句
                     $ret = mysqli_query($conn, $sql_select);
                     while ($row = mysqli_fetch_array($ret)) {
                         if ($row != "") {
                             $article_id = $row['article_id'];
-                            $article_author = $row['article_author'];
+                            $article_time = $row['article_time'];
                             $article_title = $row['article_title'];
-//                    $article_content = $row['article_content'];
-
                             $article_img = $row['article_img'];
-                            echo "<a href='/page/content.php?id=".$article_id."'> <div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'><div class='tm-content-box'>";
-                            echo "<img src='$article_img' alt='Image' class='tm-margin-b-20 img-fluid' style='width: 310px;height: 180px;'>";
-                            echo "<h4 class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/
-                          text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_title</h4>";
-//                    echo "<div class='tm-margin-b-20' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/
-//                          text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_content</div>";
-                            echo "</div></div></a>";
+                    print <<<eot
+                        <a href='content.php?id=$article_id'>
+                            <div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'>
+                                <div class='tm-content-box'>
+                                    <img src='$article_img' alt='Image' class='tm-margin-b-20 img-fluid' style='width: 310px;height: 180px;'>
+                                    <table style='width: 100%;text-align: justify-all'>
+                                        <tr>
+                                            <td>
+                                                <p class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_title</p>
+                                            </td>
+                                            <td>
+                                                <p class='tm-margin-b-20 tm-gold-text' style='width:100%;height:40px;white-space: nowrap;/*强制在一行显示*/text-overflow:ellipsis;/*设置超出内容显示...*/overflow: hidden;'>$article_time</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </a>
+eot;
                         } else {
                             echo "<div style='text-align: center'>暂无内容！</div>";
                         }
@@ -145,44 +151,59 @@ EOT;
                             $url = file_get_contents("https://ip.taobao.com/outGetIpInfo?ip=" . $login_ip . "&accessKey=alibaba-inc");
                             $data = json_decode($url, true);
                             $login_address = $data['data']['country'] . $data['data']['region'] . $data['data']['city'];
-
-                            echo "<div><a href='/page/myblog.php'><img src='$img_url' alt='Image' style='width:120px;height:120px;'></a></div>";
-                            echo "<span>欢迎您!&ensp;$user</span>";
-//                            //查询用户身份
-//                            $sql_select_role = "SELECT * FROM ka_user WHERE user_name = '$user';";
-//                            //执行SQL语句
-//                            $result = mysqli_query($conn, $sql_select_role);
-//                            $row = mysqli_fetch_array($result);
-//                            $role = $row['user_role'];
-//                            if ($role == '1') {
-//                                echo "<span><a href='admin.php' style='margin-left: 20px;font-size: 8px'>进入后台</a></span>";
-//                            }
-                            echo "<span><a href='/page/logout.php' style='margin-left: 20px;font-size: 8px'>退出登录</a></span>";
-                            echo "<hr>";
-                            echo "<table style='line-height: 60px;width: 100%;'>
+                            //查询用户身份
+                            $sql_select_role = "SELECT * FROM `kaka`.`ka_user` WHERE user_name = '$user';";
+                            //执行SQL语句
+                            $result = mysqli_query($conn, $sql_select_role);
+                            $row = mysqli_fetch_array($result);
+                            $role = $row['user_role'];
+                            print <<<eto
+                                <div>
+                                    <a href='/page/myblog.php'>
+                                        <img src='$img_url' alt='Image' style='width:120px;height:120px;'>
+                                    </a>
+                                </div>
+                                <span>欢迎您!&ensp;$user</span>
+                                <span>
+                                    <a href='/page/logout.php' style='margin-left: 20px;font-size: 8px'>退出登录</a>
+                                </span>
+                                <hr>
+                                <span id="admin">
+                                        <a href='/page/admin/admin-home.php' style='margin-left: 20px;font-size: 8px'>进入后台</a>
+                                </span>
+                                <script>
+                                    var ishidden = "$role";
+                                    if (ishidden === '0' || ishidden === '1') {
+                                        document.getElementById("admin").style.visibility="visible";
+                                    } else {
+                                        document.getElementById("admin").style.visibility="hidden";
+                                    }
+                                    </script>
+                                
+                                <table style='line-height: 60px;width: 100%;'>
                                      <tr>
-                                     <td>邮箱</td>
-                                     <td>$email</td>
+                                         <td>邮箱</td>
+                                         <td>$email</td>
                                      </tr>
                                      <tr>
-                                     <td>注册时间</td>
-                                     <td>$regtime</td>
+                                         <td>注册时间</td>
+                                         <td>$regtime</td>
                                      </tr>
                                      <tr>
-                                     <td>上次登录</td>
-                                     <td>$lasttime</td>
+                                         <td>上次登录</td>
+                                         <td>$lasttime</td>
                                      </tr>
                                      <tr>
-                                     <td>登录IP</td>
-                                     <td>$login_ip</td>
+                                         <td>登录IP</td>
+                                         <td>$login_ip</td>
                                      </tr>
                                      <tr>
                                         <td>IP属地</td>
                                         <td>$login_address</td>
                                      </tr>
-                              </table>";
+                              </table>
+eto;
                         }
-
                         ?>
                     </div>
                 </div>
