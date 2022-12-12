@@ -46,6 +46,26 @@ if ((($_FILES["file"]["type"] == "image/gif")
                         VALUE ('$title','$htmlData','$url',now(),'正常','普通','0','0','0','$author')";
             $conn = mysqli_connect("localhost", "root", "123456", "kaka");
             $result = mysqli_query($conn, $sql_insert);
+
+            //在数据库中写入操作日志
+            //准备SQL语句
+            $sql_select = "SELECT * FROM `kaka`.`ka_user` WHERE `user_name` = '$author'";
+            //执行SQL语句
+            $ret = mysqli_query($conn, $sql_select);
+            $row = mysqli_fetch_array($ret);
+            $user_name = $row['user_name'];
+            $log_u_role = $row['user_role'];
+            $ip = $_SERVER['REMOTE_ADDR'];
+            //获取当前时间显示到秒
+            $login_time = date("Y-m-d H:i:s");
+            //根据IP查询出省市
+            $url = file_get_contents("https://ip.taobao.com/outGetIpInfo?ip=" . $ip . "&accessKey=alibaba-inc");
+            $data = json_decode($url, true);
+            $address = $data['data']['country'] . $data['data']['region'] . $data['data']['city'];
+            $sql_insert_log = "INSERT INTO `kaka`.`ka_oper_log` (`oper_u_name`, `oper_u_role`,`oper_time`, `oper_content`, `oper_ip`, `oper_address`)
+                        VALUES ('$user_name', '$log_u_role', now(), '发布博客', '$ip', '$address');";
+            mysqli_query($conn, $sql_insert_log);
+
             echo "<script>alert('发布成功！');window.location.href='myblog.php';</script>";
         }
     }
