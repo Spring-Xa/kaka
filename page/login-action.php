@@ -14,7 +14,7 @@ if (!empty($username) && !empty($password)) {
     $row = mysqli_fetch_array($ret);
     //声明日志变量
     $log_u_id = $row['user_id'];
-    $log_u_name = $row['user_name'];
+    $user_name = $row['user_name'];
     $log_u_role = $row['user_role'];
     $ip = $_SERVER['REMOTE_ADDR'];
     //获取当前时间显示到秒
@@ -34,9 +34,12 @@ if (!empty($username) && !empty($password)) {
         session_start();
 //        //创建session
         $_SESSION['user'] = $username;
+        //更新最后登录时间
+        $sql_update = "update `kaka`.`ka_user` set `user_lasttime` = now() where user_name = '$user_name';";
+        mysqli_query($conn, $sql_update);
         //在数据库中写入操作日志
         $sql_insert = "INSERT INTO `kaka`.`ka_oper_log` (`oper_u_name`, `oper_u_role`,`oper_time`, `oper_content`, `oper_ip`, `oper_address`)
-                        VALUES ('$log_u_name', '$log_u_role', now(), '用户登录', '$ip', '$address');";
+                        VALUES ('$user_name', '$log_u_role', now(), '用户登录', '$ip', '$address');";
         mysqli_query($conn, $sql_insert);
         //关闭数据库,跳转至login-success.php
         mysqli_close($conn);
