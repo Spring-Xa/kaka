@@ -9,6 +9,7 @@
 [![License](https://img.shields.io/badge/License-Apache2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub contributors](https://img.shields.io/github/contributors/Spring-Xa/kaka)
 
+![Version](https://img.shields.io/github/v/tag/Spring-Xa/kaka?label=version)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Spring-Xa/kaka)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Spring-Xa/kaka)
 ![GitHub language count](https://img.shields.io/github/languages/count/Spring-Xa/kaka)
