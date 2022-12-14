@@ -1,13 +1,13 @@
 # *卡卡时光机*
 
+[![License](https://img.shields.io/badge/License-Apache2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
+![GitHub contributors](https://img.shields.io/github/contributors/Spring-Xa/kaka)
+
 ![GitHub stars](https://img.shields.io/github/stars/Spring-Xa/kaka?style=social#pic_center)
 ![GitHub forks](https://img.shields.io/github/forks/Spring-Xa/kaka?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/Spring-Xa/kaka?style=social)
 ![GitHub followers](https://img.shields.io/github/followers/Spring-Xa?style=social)
 ![Github total lines](https://img.shields.io/tokei/lines/github/Spring-Xa/kaka?style=social)
-
-[![License](https://img.shields.io/badge/License-Apache2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
-![GitHub contributors](https://img.shields.io/github/contributors/Spring-Xa/kaka)
 
 ![Version](https://img.shields.io/github/v/tag/Spring-Xa/kaka?label=version)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Spring-Xa/kaka)
