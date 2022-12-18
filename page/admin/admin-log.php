@@ -120,10 +120,11 @@ if ($username != "") {
                             <th>序号</th>
                             <th>用户名</th>
                             <th>用户角色</th>
-                            <th>登录IP</th>
-                            <th>登录时间</th>
-                            <th>登录地点</th>
+                            <th>操作IP</th>
+                            <th>操作时间</th>
+                            <th>操作地点</th>
                             <th>操作</th>
+                            <th>处理</th>
                         </tr>
                         <?php
                         //查询语句
@@ -149,6 +150,7 @@ if ($username != "") {
                             echo "<td>" . $row['oper_ip'] . "</td>";
                             echo "<td>" . $row['oper_time'] . "</td>";
                             echo "<td>" . $row['oper_address'] . "</td>";
+                            echo "<td>" . $row['oper_content'] . "</td>";
                             echo "<td>";
 //                            echo "<button><a href='/page/admin/ctrl/edit_log.php?id=" . $row['oper_id'] . "'>编辑</a></button>";
 //                            echo "&ensp;";
