@@ -58,7 +58,7 @@
 - PHP语言级别：5.6
 
 ## 技术栈
-- Vue,element-ui,jquery,bootstrap,kindeditor
+- HTML,css,JavaScript,Vue,element-ui,jquery,bootstrap,kindeditor
 
 ## 开发工具
 
