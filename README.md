@@ -57,6 +57,9 @@
 - PHP版本：php 7.3.4nts
 - PHP语言级别：5.6
 
+## 技术栈
+- Vue,element-ui,jquery,bootstrap,kindeditor
+
 ## 开发工具
 
 - PhpStorm 2022.3
