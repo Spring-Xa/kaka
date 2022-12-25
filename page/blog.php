@@ -83,7 +83,7 @@
                     <div class="tm-blog-post" style="color: black;border: #f5f5f5 1px solid;margin-bottom: 20px;padding-bottom: -40px;padding-top: 20px;padding-left: 20px;padding-right: 20px">
                         <a href='/page/content.php?id=$article_id' style="text-decoration: none;color: black">
                         <h3 class="tm-gold-text">$article_title</h3>
-                        <img src="$article_img" alt="Image" class="img-fluid tm-img-post" style="max-height: 400px">
+                        <img src="$article_img" alt="Image" class="img-fluid tm-img-post" style="max-height: 250px">
                         </a>
                         <p>$article_content</p>
                     </div>
