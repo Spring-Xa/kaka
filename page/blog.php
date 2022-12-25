@@ -102,8 +102,8 @@ EOT;
                             $article_time = $row['article_time'];
                             $article_title = $row['article_title'];
                             $article_img = $row['article_img'];
-                    print <<<eot
-                        <a href='content.php?id=$article_id'>
+                            print <<<eot
+                        <a href='/page/content.php?id=$article_id'>
                             <div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3'>
                                 <div class='tm-content-box'>
                                     <img src='$article_img' alt='Image' class='tm-margin-b-20 img-fluid' style='width: 310px;height: 180px;'>
