@@ -164,19 +164,20 @@ eot;
                                     </a>
                                 </div>
                                 <span>欢迎您!&ensp;$user</span>
-                                <span>
-                                    <a href='/page/logout.php' style='margin-left: 20px;font-size: 8px'>退出登录</a>
-                                </span>
+                                
                                 <hr>
+                                <span>
+                                    <a href='/page/logout.php' style='font-size: 14px'>退出登录</a>
+                                </span>
                                 <span id="admin">
-                                        <a href='/page/admin/admin-home.php' style='margin-left: 20px;font-size: 8px'>进入后台</a>
+                                        <a href='/page/admin/admin-home.php' style='margin-left: 20px;font-size: 14px'>进入后台</a>
                                 </span>
                                 <script>
                                     var ishidden = "$role";
                                     if (ishidden === '0' || ishidden === '1') {
                                         document.getElementById("admin").style.visibility="visible";
                                     } else {
-                                        document.getElementById("admin").style.visibility="hidden";
+                                        document.getElementById("admin").style.display="none";
                                     }
                                     </script>
                                 
