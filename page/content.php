@@ -168,21 +168,24 @@
                     <div class="comment-list-content">
                         <div class="comment-list-content-item">
                             <table>
-                                    <?php
-                                    $sql = "select * from `kaka`.`ka_comment` where comment_article = $id";
-                                    $result = mysqli_query($conn, $sql);
-                                    //循环输出评论内容
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        $comment_id = $row['comment_id'];
-                                        $comment_content = $row['comment_content'];
-                                        $comment_user = $row['comment_author'];
-                                        $comment_time = $row['comment_time'];
-                                        $article_id = $row['comment_article'];
-                                        print <<<EOF
+                                <?php
+                                $sql = "select * from `kaka`.`ka_comment` where comment_article = $id";
+                                $result = mysqli_query($conn, $sql);
+                                //循环输出评论内容
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $comment_id = $row['comment_id'];
+                                    $comment_content = $row['comment_content'];
+                                    $comment_user = $row['comment_author'];
+                                    $comment_time = $row['comment_time'];
+                                    $article_id = $row['comment_article'];
+                                    //查询用户的头像
+                                    $row_img = mysqli_fetch_array(mysqli_query($conn, "select * from `kaka`.`ka_user` where user_name = '$comment_user'"));
+                                    $user_img = $row_img['user_img'];
+                                    print <<<EOF
                                             <tr>
                                                 <td>
                                                     <div>
-                                                        <img src="/images/tm-img-100x100-1.jpg" height="50px" alt="">
+                                                        <img src="$user_img" style="width: 50px; height: 50px; border-radius: 50%;" alt="">
                                                         <span>$comment_user:</span>&ensp;
                                                     </div>
                                                 </td>
@@ -201,8 +204,8 @@
                                                 </td>
                                             </tr>
 EOF;
-                                    }
-                                    ?>
+                                }
+                                ?>
                             </table>
                         </div>
                     </div>
