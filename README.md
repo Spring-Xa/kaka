@@ -3,6 +3,11 @@
 [![License](https://img.shields.io/badge/License-Apache2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub contributors](https://img.shields.io/github/contributors/Spring-Xa/kaka)
 
+![GitHub last commit](https://img.shields.io/github/last-commit/Spring-Xa/kaka)
+![GitHub issues](https://img.shields.io/github/issues/Spring-Xa/kaka)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/Spring-Xa/kaka)
+
+
 ![GitHub stars](https://img.shields.io/github/stars/Spring-Xa/kaka?style=social#pic_center)
 ![GitHub forks](https://img.shields.io/github/forks/Spring-Xa/kaka?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/Spring-Xa/kaka?style=social)
@@ -15,12 +20,6 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/Spring-Xa/kaka)
 ![GitHub top language](https://img.shields.io/github/languages/top/Spring-Xa/kaka)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Spring-Xa/kaka)
-![GitHub issues](https://img.shields.io/github/issues/Spring-Xa/kaka)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/Spring-Xa/kaka)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/Spring-Xa/kaka)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Spring-Xa/kaka)
-
 ## 开发者说
 
 - 《卡卡时光机》是一个使用PHP语言开发的个人博客，可以用来记录自己的学习经历、成果、以及记录自己的生活，为自己的生活留下一丝美好的回忆。
@@ -29,6 +28,7 @@
 - 匆匆返乡，再匆匆完成项目之后，第一版终于完成了。虽然在时间紧急的状况下砍掉了需多功能，但是这个项目我并不想就此结束，我想继续把他完善，把最初想要实现的功能将它完善。
 - 在作为课程设计提交了之后，又继续完善了一些功能，修复了一些以前存在的小bug，但是依旧还有很多功能没有实现，继续加油吧。
 - 2022年12月13日 清理了一些无关文件，想起来数据库文件没有上传，现在补上。（系统必须注册才能登录成功，因为使用了MD5加密，直接在数据库中写入账号密码是不能登录的。）
+- 2022年12月29日，完成了一些功能，如文章的浏览量与点赞功能。
 
 ## 预期实现功能
 
