@@ -296,7 +296,7 @@ eto;
             <div class="col-xs-12 tm-copyright-col">
                 <p class="tm-copyright-text">Copyright &copy; 2022 卡卡时光机
                     <a target="_blank" href="https://beian.miit.gov.cn/"
-                       style="color: #999999">黔ICP备2021007007号-1</a></p>
+                       style="color: #999999">黔ICP备2021007007号</a></p>
             </div>
         </div>
     </div>
