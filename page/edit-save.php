@@ -52,7 +52,7 @@ function extracted(mysqli $conn, $sql_update_file, $htmlData, $id, $user_name)
                         VALUES ('$user_name', '$log_u_role', now(), '修改博客', '$ip', '$address');";
     mysqli_query($conn, $sql_insert_log);
 
-    echo "<script>alert('修改成功！');window.location.href='myblog.php';</script>";
+    echo "<script>alert('修改成功！');history.go(-2)</script>";
 }
 
 if ((($_FILES["file"]["type"] == "image/gif")

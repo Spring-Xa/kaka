@@ -127,8 +127,9 @@ if ($username != "") {
                             <th>处理</th>
                         </tr>
                         <?php
+                        $keyword = isset($_POST['search']) ? $_POST['search'] : "";
                         //查询语句
-                        $sql = "select * from `kaka`.`ka_oper_log` ORDER BY `oper_time` DESC";
+                        $sql = "select * from `kaka`.`ka_oper_log` where `oper_id` like '%$keyword%' or `oper_u_name` like '%$keyword%' or `oper_content` like '%$keyword%' ORDER BY `oper_time` DESC";
                         //执行查询语句
                         $result = mysqli_query($conn, $sql);
                         //获取查询结果
@@ -136,11 +137,11 @@ if ($username != "") {
                         //输出查询结果
                         $i = 1;
                         while ($row) {
-                            if ($row['oper_u_role'] = '0') {
+                            if ($row['oper_u_role'] == '0') {
                                 $role = '超级管理员';
-                            } else if ($row['oper_u_role'] = '1') {
+                            } else if ($row['oper_u_role'] == '1') {
                                 $role = '管理员';
-                            } else if ($row['oper_u_role'] = '2') {
+                            } else if ($row['oper_u_role'] == '2') {
                                 $role = '普通用户';
                             }
                             echo "<tr>";

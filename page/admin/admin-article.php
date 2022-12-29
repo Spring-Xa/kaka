@@ -125,6 +125,7 @@ if ($username != "") {
                     <tr>
                         <th>序号</th>
                         <th>blog-ID</th>
+                        <th>标题</th>
                         <th>作者</th>
                         <th>发布时间</th>
                         <th>状态</th>
@@ -135,10 +136,11 @@ if ($username != "") {
                         <th>操作</th>
                     </tr>
                     <?php
+                    $keyword = isset($_POST['search']) ? $_POST['search'] : "";
                     //连接数据库
                     $conn = mysqli_connect('localhost', 'root', '123456', 'kaka');
                     //查询语句
-                    $sql = "select * from `kaka`.ka_article";
+                    $sql = "select * from `kaka`.ka_article where article_title like '%$keyword%' or article_author like '%$keyword%' or article_type like '%$keyword%' or article_time like '%$keyword%' or article_id like '%$keyword%'  or article_comment like '%$keyword%'";
                     //执行查询语句
                     $result = mysqli_query($conn, $sql);
                     //判断是否查询成功
@@ -150,6 +152,7 @@ if ($username != "") {
                             echo "<tr>";
                             echo "<td>" .$i. "</td>";
                             echo "<td>" . $row['article_id'] . "</td>";
+                            echo "<td>" . $row['article_title'] . "</td>";
                             echo "<td>" . $row['article_author'] . "</td>";
                             echo "<td>" . $row['article_time'] . "</td>";
                             echo "<td>" . $row['article_state'] . "</td>";

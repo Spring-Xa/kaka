@@ -137,12 +137,10 @@ if ($username != "") {
                         <th>角色</th>
                         <th>操作</th>
                     </tr>
-                    <!--搜索-->
-
-
                     <?php
+                    $keyword = $_POST['search'];
                     //查询语句
-                    $sql = "select * from `kaka`.`ka_user`";
+                    $sql = "select * from `kaka`.`ka_user` where `user_name` like '%$keyword%' or user_id like '%$keyword%' or user_email like '%$keyword%' or user_phone like '%$keyword%' or user_address like '%$keyword%' or user_role like '%$keyword%' or user_sex like '%$keyword%'";
                     //执行查询语句
                     $result = mysqli_query($conn, $sql);
                     //判断是否查询成功
