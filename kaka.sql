@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 29/12/2022 19:54:52
+ Date: 29/12/2022 23:30:56
 */
 
 SET NAMES utf8mb4;
@@ -39,6 +39,21 @@ CREATE TABLE `ka_article`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 122 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for ka_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `ka_comment`;
+CREATE TABLE `ka_comment`  (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `comment_content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论内容',
+  `comment_time` datetime NOT NULL COMMENT '评论时间',
+  `comment_author` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论作者',
+  `comment_article` int(11) NOT NULL COMMENT '评论文章id',
+  PRIMARY KEY (`comment_id`) USING BTREE,
+  INDEX `comment_article`(`comment_article`) USING BTREE,
+  CONSTRAINT `ka_comment_ibfk_1` FOREIGN KEY (`comment_article`) REFERENCES `ka_article` (`article_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '评论表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for ka_like
 -- ----------------------------
 DROP TABLE IF EXISTS `ka_like`;
@@ -52,7 +67,7 @@ CREATE TABLE `ka_like`  (
   INDEX `like_user`(`like_user`) USING BTREE,
   CONSTRAINT `ka_like_ibfk_1` FOREIGN KEY (`like_article`) REFERENCES `ka_article` (`article_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `ka_like_ibfk_2` FOREIGN KEY (`like_user`) REFERENCES `ka_user` (`user_name`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '点赞表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '点赞表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for ka_oper_log
