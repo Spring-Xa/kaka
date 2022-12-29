@@ -92,8 +92,12 @@ EOT;
                 ?>
                 <div class="row">
                     <?php
+                    //物理分页
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $pageSize = 8;
+                    $offset = ($page - 1) * $pageSize;
                     //准备SQL语句
-                    $sql_select = "SELECT * FROM `kaka`.`ka_article`;";
+                    $sql_select = "SELECT * FROM `kaka`.`ka_article` ORDER BY article_views DESC LIMIT $offset,$pageSize;";
                     //执行SQL语句
                     $ret = mysqli_query($conn, $sql_select);
                     while ($row = mysqli_fetch_array($ret)) {
@@ -126,6 +130,38 @@ eot;
                         }
                     }
                     ?>
+                </div>
+                <!--分页-->
+                <div style="text-align: center; margin-top: 15px">
+                <span>
+                    <?php
+                    //查询总记录数
+                    $sql_select_count = "SELECT COUNT(*) FROM `kaka`.`ka_article`;";
+                    //执行SQL语句
+                    $result = mysqli_query($conn, $sql_select_count);
+                    $row = mysqli_fetch_array($result);
+                    $count = $row[0];
+                    //计算总页数
+                    $pageCount = ceil($count / $pageSize);
+                    echo "共{$count}条记录,共{$pageCount}页&ensp;";
+                    echo "当前是第{$page}页";
+                    echo "<br>";
+                    if ($page == 1) {
+                        echo "<a href='?page=1'>首页&ensp;</a>";
+                        echo "<a href='?page=" . ($page + 1) . "'>下一页&ensp;</a>";
+                        echo "<a href='?page=" . ($pageCount) . "'>尾页</a>";
+                    } else if ($page == $pageCount) {
+                        echo "<a href='?page=1'>首页&ensp;</a>";
+                        echo "<a href='?page=" . ($page - 1) . "'>上一页&ensp;</a>";
+                        echo "<a href='?page=" . ($pageCount) . "'>尾页</a>";
+                    } else {
+                        echo "<a href='?page=1'>首页&ensp;</a>";
+                        echo "<a href='?page=" . ($page - 1) . "'>上一页&ensp;</a>";
+                        echo "<a href='?page=" . ($page + 1) . "'>下一页&ensp;</a>";
+                        echo "<a href='?page=" . ($pageCount) . "'>尾页</a>";
+                    }
+                    ?>
+                </span>
                 </div>
             </div>
             <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 tm-aside-r">

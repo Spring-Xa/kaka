@@ -77,7 +77,12 @@
             $result = mysqli_query($conn, $sql_select_role);
             $row = mysqli_fetch_array($result);
             $username = $row['user_name'];
-            $sql_select = "SELECT * FROM `kaka`.`ka_article` WHERE article_author = '$username';";
+            //物理分页
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $pageSize = 8;
+            $offset = ($page - 1) * $pageSize;
+            //查询博客
+            $sql_select = "SELECT * FROM `kaka`.`ka_article` WHERE article_author = '$username' ORDER BY article_id DESC LIMIT $offset,$pageSize;";
             //执行SQL语句
             $result = mysqli_query($conn, $sql_select);
             //循环输出数据
@@ -116,7 +121,38 @@ eot;
             }
             ?>
         </div>
-
+        <!--分页-->
+        <div style="text-align: center; margin-top: 15px">
+                <span>
+                    <?php
+                    //查询总记录数
+                    $sql_select_count = "SELECT COUNT(*) FROM `kaka`.`ka_article` WHERE article_author = '$username';";
+                    //执行SQL语句
+                    $result = mysqli_query($conn, $sql_select_count);
+                    $row = mysqli_fetch_array($result);
+                    $count = $row[0];
+                    //计算总页数
+                    $pageCount = ceil($count / $pageSize);
+                    echo "共{$count}条记录,共{$pageCount}页&ensp;";
+                    echo "当前是第{$page}页";
+                    echo "<br>";
+                    if ($page == 1) {
+                        echo "<a href='?page=1'>首页&ensp;</a>";
+                        echo "<a href='?page=" . ($page + 1) . "'>下一页&ensp;</a>";
+                        echo "<a href='?page=" . ($pageCount) . "'>尾页</a>";
+                    } else if ($page == $pageCount) {
+                        echo "<a href='?page=1'>首页&ensp;</a>";
+                        echo "<a href='?page=" . ($page - 1) . "'>上一页&ensp;</a>";
+                        echo "<a href='?page=" . ($pageCount) . "'>尾页</a>";
+                    } else {
+                        echo "<a href='?page=1'>首页&ensp;</a>";
+                        echo "<a href='?page=" . ($page - 1) . "'>上一页&ensp;</a>";
+                        echo "<a href='?page=" . ($page + 1) . "'>下一页&ensp;</a>";
+                        echo "<a href='?page=" . ($pageCount) . "'>尾页</a>";
+                    }
+                    ?>
+                </span>
+        </div>
     </div>
 </section>
 <footer class="tm-footer">
