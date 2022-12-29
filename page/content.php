@@ -36,6 +36,7 @@
         $content = $row['article_content'];
         $time = $row['article_time'];
         $likes = $row['article_like'];
+        $comments = $row['article_comment'];
         //获取文章的浏览量
         $views = $row['article_views'];
         //浏览量加1
@@ -121,16 +122,16 @@
                         <span><?php echo $likes ?></span>
                         <a href="/page/do_like.php?id=<?php echo $id ?>">
                             <svg t='1672297176134' class='icon' viewBox='0 0 1024 1024' version='1.1'
-                             xmlns='http://www.w3.org/2000/svg' p-id='3153' width='16' height='16'>
-                            <path d='M857.28 344.992h-264.832c12.576-44.256 18.944-83.584 18.944-118.208 0-78.56-71.808-153.792-140.544-143.808-60.608 8.8-89.536 59.904-89.536 125.536v59.296c0 76.064-58.208 140.928-132.224 148.064l-117.728-0.192A67.36 67.36 0 0 0 64 483.04V872c0 37.216 30.144 67.36 67.36 67.36h652.192a102.72 102.72 0 0 0 100.928-83.584l73.728-388.96a102.72 102.72 0 0 0-100.928-121.824zM128 872V483.04c0-1.856 1.504-3.36 3.36-3.36H208v395.68H131.36A3.36 3.36 0 0 1 128 872z m767.328-417.088l-73.728 388.96a38.72 38.72 0 0 1-38.048 31.488H272V476.864a213.312 213.312 0 0 0 173.312-209.088V208.512c0-37.568 12.064-58.912 34.72-62.176 27.04-3.936 67.36 38.336 67.36 80.48 0 37.312-9.504 84-28.864 139.712a32 32 0 0 0 30.24 42.496h308.512a38.72 38.72 0 0 1 38.048 45.888z'
-                                  p-id='3154'></path>
-                        </svg>
+                                 xmlns='http://www.w3.org/2000/svg' p-id='3153' width='16' height='16'>
+                                <path d='M857.28 344.992h-264.832c12.576-44.256 18.944-83.584 18.944-118.208 0-78.56-71.808-153.792-140.544-143.808-60.608 8.8-89.536 59.904-89.536 125.536v59.296c0 76.064-58.208 140.928-132.224 148.064l-117.728-0.192A67.36 67.36 0 0 0 64 483.04V872c0 37.216 30.144 67.36 67.36 67.36h652.192a102.72 102.72 0 0 0 100.928-83.584l73.728-388.96a102.72 102.72 0 0 0-100.928-121.824zM128 872V483.04c0-1.856 1.504-3.36 3.36-3.36H208v395.68H131.36A3.36 3.36 0 0 1 128 872z m767.328-417.088l-73.728 388.96a38.72 38.72 0 0 1-38.048 31.488H272V476.864a213.312 213.312 0 0 0 173.312-209.088V208.512c0-37.568 12.064-58.912 34.72-62.176 27.04-3.936 67.36 38.336 67.36 80.48 0 37.312-9.504 84-28.864 139.712a32 32 0 0 0 30.24 42.496h308.512a38.72 38.72 0 0 1 38.048 45.888z'
+                                      p-id='3154'></path>
+                            </svg>
                         </a>
                     </td>
                     <td>
                         <!--评论-->
                         <span class="glyphicon glyphicon-thumbs-up">评论:</span>
-                        <span>暂未开发</span>
+                        <span><?php echo $comments ?></span>
                         <svg t="1672297233552" class="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="4128" width="16" height="16">
                             <path d="M853.333333 768c35.413333 0 64-20.650667 64-55.978667V170.581333A63.978667 63.978667 0 0 0 853.333333 106.666667H170.666667C135.253333 106.666667 106.666667 135.253333 106.666667 170.581333v541.44C106.666667 747.285333 135.338667 768 170.666667 768h201.173333l110.016 117.44a42.752 42.752 0 0 0 60.586667 0.042667L651.904 768H853.333333z m-219.029333-42.666667h-6.250667l-115.797333 129.962667c-0.106667 0.106667-116.010667-129.962667-116.010667-129.962667H170.666667c-11.776 0-21.333333-1.621333-21.333334-13.312V170.581333A21.205333 21.205333 0 0 1 170.666667 149.333333h682.666666c11.776 0 21.333333 9.536 21.333334 21.248v541.44c0 11.754667-9.472 13.312-21.333334 13.312H634.304zM341.333333 490.666667a42.666667 42.666667 0 1 0 0-85.333334 42.666667 42.666667 0 0 0 0 85.333334z m170.666667 0a42.666667 42.666667 0 1 0 0-85.333334 42.666667 42.666667 0 0 0 0 85.333334z m170.666667 0a42.666667 42.666667 0 1 0 0-85.333334 42.666667 42.666667 0 0 0 0 85.333334z"
@@ -139,8 +140,73 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
+            <!--下面为评论-->
+            <div class="comment" style="width: 100%">
+                <form action="do_comment.php?article_id=<?php echo $id ?>" method="post">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="comment"></label>
+                                <textarea name="comment" id="comment" cols="30" rows="1"
+                                          placeholder="请输入评论内容"></textarea>
+                            </td>
+                            <td>
+                                &ensp;
+                                <input class="btn bg-primary" type="submit" value="评论">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+            </div>
+            <hr>
+            <div class="comment-content">
+                <div class="comment-list">
+                    <div class="comment-list-title">
+                        <span>评论列表</span>
+                    </div>
+                    <div class="comment-list-content">
+                        <div class="comment-list-content-item">
+                            <table>
+                                    <?php
+                                    $sql = "select * from `kaka`.`ka_comment` where comment_article = $id";
+                                    $result = mysqli_query($conn, $sql);
+                                    //循环输出评论内容
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $comment_id = $row['comment_id'];
+                                        $comment_content = $row['comment_content'];
+                                        $comment_user = $row['comment_author'];
+                                        $comment_time = $row['comment_time'];
+                                        $article_id = $row['comment_article'];
+                                        print <<<EOF
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <img src="/images/tm-img-100x100-1.jpg" height="50px" alt="">
+                                                        <span>$comment_user:</span>&ensp;
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span style="display:block; width: 100%; max-width: 1000px;word-wrap: break-word">$comment_content</span>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 200px">
+                                                    <div>
+                                                        <span>$comment_time</span>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 50px">
+                                                    <a href="/page/do_comment_delete.php?comment_id=$comment_id&article_id=$article_id">删除</a>
+                                                </td>
+                                            </tr>
+EOF;
+                                    }
+                                    ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 </section>
 <footer class="tm-footer">
     <div class="container-fluid">
