@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 13/12/2022 20:13:07
+ Date: 29/12/2022 19:54:52
 */
 
 SET NAMES utf8mb4;
@@ -26,30 +26,33 @@ CREATE TABLE `ka_article`  (
   `article_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章标题',
   `article_content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章内容',
   `article_img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章图片',
-  `article_time` datetime NOT NULL COMMENT '文章时间',
+  `article_time` datetime NOT NULL COMMENT '文章封面',
   `article_state` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章状态',
   `article_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章类型',
   `article_views` int(11) NOT NULL COMMENT '文章浏览量',
   `article_like` int(11) NOT NULL COMMENT '文章点赞数',
   `article_comment` int(11) NOT NULL COMMENT '文章评论数',
   `article_author` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章作者',
-  PRIMARY KEY (`article_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章表' ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`article_id`) USING BTREE,
+  INDEX `article_author`(`article_author`) USING BTREE,
+  CONSTRAINT `ka_article_ibfk_1` FOREIGN KEY (`article_author`) REFERENCES `ka_user` (`user_name`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 122 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for ka_comment
+-- Table structure for ka_like
 -- ----------------------------
-DROP TABLE IF EXISTS `ka_comment`;
-CREATE TABLE `ka_comment`  (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `comment_content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论内容',
-  `comment_time` datetime NOT NULL COMMENT '评论时间',
-  `comment_state` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论状态',
-  `comment_like` int(11) NOT NULL COMMENT '评论点赞数',
-  `comment_author` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论作者',
-  `comment_article` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论文章',
-  PRIMARY KEY (`comment_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '评论表' ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `ka_like`;
+CREATE TABLE `ka_like`  (
+  `like_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '点赞id',
+  `like_article` int(11) NOT NULL COMMENT '点赞的文章id',
+  `like_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '点赞用户',
+  `like_time` datetime NOT NULL COMMENT '点赞时间',
+  PRIMARY KEY (`like_id`) USING BTREE,
+  INDEX `like_article`(`like_article`) USING BTREE,
+  INDEX `like_user`(`like_user`) USING BTREE,
+  CONSTRAINT `ka_like_ibfk_1` FOREIGN KEY (`like_article`) REFERENCES `ka_article` (`article_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `ka_like_ibfk_2` FOREIGN KEY (`like_user`) REFERENCES `ka_user` (`user_name`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '点赞表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for ka_oper_log
@@ -66,7 +69,7 @@ CREATE TABLE `ka_oper_log`  (
   PRIMARY KEY (`oper_id`) USING BTREE,
   INDEX `oper_u_name`(`oper_u_name`) USING BTREE,
   CONSTRAINT `ka_oper_log_ibfk_1` FOREIGN KEY (`oper_u_name`) REFERENCES `ka_user` (`user_name`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for ka_user
